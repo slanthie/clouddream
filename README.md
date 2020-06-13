@@ -1,5 +1,10 @@
 # Dockerized deepdream: Generate ConvNet Art in the Cloud
 
+Note: this is a cloned version of deprecated 
+https://github.com/VISIONAI/clouddream
+with intention of getting it to work on Windows box running Docker, and fixing issues with Dockerfile (latest modules don't like Ubuntu 14.x or 16.x as most modules now require Python 3.7+)
+
+
 Google recently released the
 [deepdream](https://github.com/google/deepdream) software package for generating images like
 
