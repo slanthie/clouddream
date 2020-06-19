@@ -1,0 +1,6 @@
+{
+    "maxwidth" : MAXWIDTH,
+    "step_size" : STEPSIZE,
+    "jitter" : JITTER,
+    "layer" : "LAYER"
+}
