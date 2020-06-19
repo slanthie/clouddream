@@ -11,9 +11,12 @@ if [ "$#" -ne 1 ];
 fi
 suffix=$1
 cd /opt/deepdream/inputs
-output_filename=`echo ${f}|sed -e "s/\.jpg//" -e "s/\.jpeg//" -e "s/\.JPG//" -e "s\.JPEG//"`    #should just do case insensitive!
-echo "Output file will be $output_filename"
+mkdir -p /opt/deepdream/outputs/thumbnails/
 find . -type f -not -path '*/\.*' -print0 | while read -d $'\0' f;
+
+output_filename=`echo ${f}|sed -e "s/\.jpg//" -e "s/\.jpeg//" -e "s/\.JPG//" -e "s/\.JPEG//"`"_${1}"    #should just do case insensitive!
+
+echo "Output file will be $output_filename"
 do
     cd /opt/deepdream
     if [ -e outputs/thumbnails/$output_filename.jpg ];
