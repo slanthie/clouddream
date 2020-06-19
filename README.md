@@ -6,7 +6,10 @@ with intention of getting it to work on Windows box running Docker, and fixing i
 
 One significant change/addition is the creation of thumbnails via the "start_thumbnails.sh" script. Run that first to see what type of settings you like, then modify the settings.json file to the "layer" type you like. (The layer name is included in the thumbnail filename)
 
-Eg. if you drop a file called myimage.jpg, you will get a bunch of outputs in outputs/thumbnails/ folder in the form of myimage_layer.jpg (e.g. myimage_inception_3b_5x5.jpg), where inception/3b_5x5 is the layer settings. (See below for entire list of possible layers).
+Eg. if you drop a file called myimage.jpg into clouddream/deepdream/inputs/ folder (on your local PC -> mapped to /opt/deepdream/inputs in container), you will get a bunch of outputs in outputs/thumbnails/ folder in the form of myimage_layer.jpg (e.g. myimage_inception_3b_5x5.jpg), where inception/3b_5x5 is the layer settings. (See below for entire list of possible layers).
+
+NOTE: You will need to edit start.sh and start_thumbnails.sh to your path on PC where you cloned this repo.
+E.g. if you downloaded to C:/Users/Ralph/clouddream, then your path is -v //c/Users/Ralph/clouddream/deepdream:<target> 
 
 The thumbnail script will run for a while, so let it run overnight to get your previews, then select the rendering you prefer.
 
