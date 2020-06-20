@@ -13,25 +13,23 @@ suffix=$1
 cd /opt/deepdream/inputs
 mkdir -p /opt/deepdream/outputs/thumbnails/
 find . -type f -not -path '*/\.*' -print0 | while read -d $'\0' f;
-
-output_filename=`echo ${f}|sed -e "s/\.jpg//" -e "s/\.jpeg//" -e "s/\.JPG//" -e "s/\.JPEG//"`"_${1}"    #should just do case insensitive!
-
-echo "Output file will be $output_filename"
 do
+	output_filename=`echo ${f}|sed -e "s/\.jpg//" -e "s/\.jpeg//" -e "s/\.JPG//" -e "s/\.JPEG//"`"_${1}"    #should just do case insensitive!
+	echo "[deepdream.py] Input file is ${f}. Suffix is ${suffix}. Output file will be $output_filename. "
     cd /opt/deepdream
     if [ -e outputs/thumbnails/$output_filename.jpg ];
     then
-	echo "File $output_filename.jpg already processed"
+		echo "File $output_filename.jpg already processed"
     else
-	echo "Deepdream" $output_filename.jpg
-	chmod gou+r inputs/${f}
-	cp inputs/${f} input.jpg
-	python deepdream.py
-	ERROR_CODE=$?
-	echo "Error Code is" ${ERROR_CODE}
-	cp output.jpg outputs/thumbnails/$output_filename.jpg
-	rm output.jpg
-	echo "Just created" outputs/thumbnails/$output_filename.jpg
+		echo "[deepdream.py]" $output_filename.jpg
+		chmod gou+r inputs/${f}
+		cp inputs/${f} input.jpg
+		python deepdream.py
+		ERROR_CODE=$?
+		echo "deepdream.py exited with Error Code  " ${ERROR_CODE}
+		cp output.jpg outputs/thumbnails/$output_filename.jpg
+		rm output.jpg
+		echo "Just created" outputs/thumbnails/$output_filename.jpg
     fi
 done
 
