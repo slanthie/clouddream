@@ -28,9 +28,9 @@ docker run -it --rm -v /tmp:/tmp aquarius212/ffmpeg /bin/bash -c "ffmpeg -i /tmp
 cp /tmp/images/image*jpg deepdream/inputs/
 
 PORT=8000
-docker run --name deepdream-files -v `pwd`/deepdream:/usr/share/nginx/html:ro -d -p ${PORT}:80 nginx
-docker run -d --name deepdream-json -v `pwd`/deepdream:/opt/deepdream ubuntu:14.04 /bin/bash -c "cd /opt/deepdream && ./make_json.sh"
-docker run -it --rm --name deepdream-compute -v `pwd`/deepdream:/opt/deepdream visionai/clouddream /bin/bash -c "cd /opt/deepdream && ./process_images_once.sh 2>&1 > log.html"
+docker run --name deepdream-files -v /`pwd`/deepdream:/usr/share/nginx/html:ro -d -p ${PORT}:80 nginx
+docker run -d --name deepdream-json -v /`pwd`/deepdream:/opt/deepdream ubuntu:14.04 /bin/bash -c "cd /opt/deepdream && ./make_json.sh"
+docker run -it --rm --name deepdream-compute -v /`pwd`/deepdream:/opt/deepdream visionai/clouddream /bin/bash -c "cd /opt/deepdream && ./process_images_once.sh 2>&1 > log.html"
 
 
 cp -R deepdream/outputs /tmp/
