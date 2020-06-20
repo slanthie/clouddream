@@ -6,9 +6,13 @@
 function run_me {
     echo $1
     layer=$1
-    suffix=`echo $layer|sed -e "s/\/_/g"`               #replace any slash with underscore or filename will be messed up!
     echo DEBUG layer is $layer file suffix will be $suffix 
-    ./create_settings.sh "300" "0.5" "27" "$layer"
+    layer1=`echo $layer|cut -d"/" -f1`
+    layer2=`echo $layer|cut -d"/" -f2`
+    suffix=`echo $layer|sed -e "s/\//_/g"`               #replace any slash with underscore or filename will be messed up!
+    echo ./create_settings.sh "300" "0.5" "27" "$layer1" "$layer2"
+    ./create_settings.sh "300" "0.5" "27" "$layer1" "$layer2"
+    echo ./process_custom_images_once.sh "_$suffix"
     ./process_custom_images_once.sh "_$suffix"
     sleep 1
 }
